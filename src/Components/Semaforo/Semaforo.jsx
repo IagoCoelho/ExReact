@@ -1,17 +1,56 @@
-import React from "react";
-import {Link} from 'react-router-dom'
+import React from 'react'
+import { useState } from 'react';
 
-export default function Semaforo(){
-    return(
+export default function Semaforo() {
+
+    const [cor] = useState(["amarelo", "verde", "vermelho"]);
+    const [count, setCount] = useState(0)
+
+    const conta = () => {
+
+        if(count === 0) {
+
+            setCount(count + 1)
+
+            document.getElementById('divTroca').style.backgroundColor="green"
+
+        } 
+        else if(count === 1) {
+
+            setCount(count + 1)
+
+            document.getElementById('divTroca').style.backgroundColor="red"
+
+        } 
+        else if(count === 2) {
+
+            setCount(count - 2)
             
-        <header>
-            <nav>
-                <ul>
-                    <li><Link to="/">Pare</Link></li>
-                    <li><Link to="/atencao">Atenção</Link></li>
-                    <li><Link to="/siga">Siga</Link></li>
-                </ul>
-            </nav>
-        </header>
-    )
+            document.getElementById('divTroca').style.backgroundColor="yellow"
+
+        }
+
+    }
+
+    return(
+
+        <div>
+            <h2 id='sm'>
+                {
+                    cor[count]
+                }
+            </h2>
+
+            <div style={{backgroundColor:'green'}} id="divTroca" className='circulo'/>
+
+            <input 
+                className='btn'
+                value="Troca" 
+                type="button" 
+                onClick={() => conta()} 
+            />
+
+        </div>
+
+    );
 }

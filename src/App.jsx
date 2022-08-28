@@ -1,21 +1,30 @@
-import React from "react";
-import {BrowserRouter, Routes, Route} from 'react-dom'
+import React from 'react'
 
-import Semaforo from "./Components/Semaforo/Semaforo";
-import Pare from "./Components/Pare/Pare";
-import Atencao from "./Components/Atencao/Atencao";
-import Siga from "./Components/Siga/Siga";
+import { Route, Routes } from 'react-router-dom'
 
-export default function App(){
-    
+import Carteirinhas from './components/carteirinhas/Carteirinha';
+import Carros from './components/carros/Carros';
+import Semaforo from './Components/semaforo/Semaforo';
+import Menu from './components/menu/Menu';
+
+export default function App() {
+
+    const listaDeCarros = ['Carro1','Carro2','Carro3','Carro4','Carro5','Carro6','Carro7','Carro8','Carro9','Carro10']
+
     return(
-        <BrowserRouter>
-            <Semaforo/>
+        <>
+
+            <h1>Iago Coelho dos Santos - rm95683 -1TDSR</h1>
+
+            <Menu />
             <Routes>
-                < Route path="/" element={<Pare/>}/>
-                < Route path="/atencao" element={<Atencao/>}/>
-                < Route path="/siga" element={<Siga/>}/>
+
+                <Route path='/carros' element={<Carros listaCarrosProps={listaDeCarros} />} />
+                <Route path='/semaforo' element={<Semaforo />}/>
+                <Route path='/carteirinha' element={<Carteirinhas />} />
+
             </Routes>
-        </BrowserRouter>
-    )
+
+        </>
+    );
 }
